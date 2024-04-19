@@ -1,0 +1,25 @@
+{
+  "name": "economestre",
+  "version": "1.0.0",
+  "description": "Sistema de consultoria financeira criado como proposta de solução para o treinamento da Impacta.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npm ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livnascimento/EconoMestre.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livnascimento/EconoMestre/issues"
+  },
+  "homepage": "https://github.com/livnascimento/EconoMestre#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "knex": "^3.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
