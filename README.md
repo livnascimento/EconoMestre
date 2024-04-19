@@ -8,6 +8,22 @@ O **EconoMestre** é um sistema de consultoria financeira, projetado para oferec
 
 Este sistema permite que consultores financeiros qualificados se conectem com clientes que buscam orientação financeira, proporcionando um ambiente seguro e confiável para ambos os lados.
 
+## 👩🏼‍💻 Como utilizar
+
+1. Com a pasta do projeto já aberta, instale as dependências rodando o comando:
+
+    ```bash
+    npm i
+    ```
+
+2. Para iniciar o projeto, execute o script:
+
+    ```bash
+    npm start
+    ```
+
+3. Utilize um aplicativo como o Insomnia ou o Postman para navegar pelos Endpoints.
+
 ## 📑 Regras de Negócio
 
 ### 1. Cadastro e Validação dos Consultores Financeiros
@@ -35,6 +51,158 @@ Este sistema permite que consultores financeiros qualificados se conectem com cl
 - **Agendamento**: Os clientes podem agendar reuniões com base na disponibilidade dos consultores.
 - **Reagendamento e Cancelamento**: O sistema oferece flexibilidade para alterar ou cancelar reuniões conforme necessário.
 
-## Conclusão
+## 📌 Endpoints
 
-O **EconoMestre** é mais do que um sistema; é uma ferramenta que empodera indivíduos e empresas a alcançarem seus objetivos financeiros com confiança e controle.
+### Meeting
+
+- `POST /meeting`: Cria uma nova reunião. 
+
+    **Exemplo de requisição**
+
+    ```json
+    {
+        "id_consultant": 0,
+        "id_client": 0,
+        "date": "05-22-2024 13:00"
+    }
+    ```
+- `PUT /meeting/:id`: Atualiza uma reunião existente.
+
+    **Exemplo de requisição**
+
+    ```json
+    {
+        "id_consultant": 0,
+        "id_client": 0,
+        "date": "05-20-2024 13:00"
+    }
+    ```
+- `DELETE /meeting/:id`: Exclui uma reunião.
+
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+- `GET /meeting/:id_consultant`: Obtém reuniões por ID do consultor
+    
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+- `GET /meeting`: Obtém todas as reuniões. Controller: `getMeeting`.
+    
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+
+### Client
+
+- `POST /client`: Cria um novo cliente. 
+
+    **Exemplo de requisição**
+
+    ```json
+    {
+        "name": "José",
+        "cpf": "12345678901",
+        "email": "jose@client.com",
+        "password": "123456"
+    }
+    ```
+
+- `GET /client/:id`: Obtém um cliente por ID. 
+
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+
+- `GET /client`: Obtém todos os clientes.
+
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+
+- `PUT /client/:id`: Atualiza um cliente existente.
+
+    **Exemplo de requisição**
+
+    ```json
+    {
+        "name": "José Silva",
+        "cpf": "123456789",
+        "email": "jose.silva@client.com",
+        "password": "123456"
+    }
+    ```
+
+- `DELETE /client/:id`: Exclui um cliente.
+
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+
+### Consultant
+
+- `POST /consultant`: Cria um novo consultor. 
+    
+    **Exemplo de requisição**
+
+    ```json
+    {
+        "name": "Maria",
+        "cnpi": "123456789",
+        "email": "maria@consultant.com",
+        "password": "123456"
+    }
+    ```
+
+- `GET /consultant/:id`: Obtém um consultor por ID. 
+
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+
+- `GET /consultant`: Obtém todos os consultores. 
+
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+
+- `PUT /consultant/:id`: Atualiza um consultor existente.
+
+    **Exemplo de requisição**
+
+    ```json
+    {
+        "name": "Maria Santos",
+        "cnpi": "123456789",
+        "email": "maria.santos@consultant.com",
+        "password": "123456"
+    }
+    ```
+
+- `DELETE /consultant/:id`: Exclui um consultor. 
+
+    **Exemplo de requisição**
+
+    ```json
+    // Sem corpo na requisição
+    ```
+
+---
+
+Obrigada por visitar meu projeto! 🧡
