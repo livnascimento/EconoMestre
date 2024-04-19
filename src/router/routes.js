@@ -1,7 +1,7 @@
 import express from 'express';
-import clientRouter from './client.routes';
-import consultantRouter from './consultant.routes';
-import scheduleRouter from './schedule.routes';
+import clientRouter from './client.routes.js';
+import consultantRouter from './consultant.routes.js';
+import scheduleRouter from './schedule.routes.js';
 
 const router = express();
 
