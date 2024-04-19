@@ -1,5 +1,6 @@
 class Client {
     constructor(name, cpf, email, password) {
+        this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.email = email;
