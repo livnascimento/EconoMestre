@@ -34,20 +34,21 @@ export const updateConsultant = async (req, res) => {
 
         const encryptedPassword = await bcrypt.hash(password, 10);
 
-        data.consultants.forEach(async consultant => {
+        for (let consultant of data.consultants) {
             if (consultant.id == id) {
+
                 consultant.name = name;
                 consultant.cnpi = cnpi;
                 consultant.email = email;
                 consultant.password = encryptedPassword;
+
+                const jsonString = JSON.stringify(data);
+    
+                await fs.writeFile("./src/database/consultants.json", jsonString);
+    
+                return res.json();
             }
-
-            const jsonString = JSON.stringify(data);
-
-            await fs.writeFile("./src/database/consultants.json", jsonString);
-
-            return res.json();
-        });
+        }
 
         return res.status(404).json({ message: "Consultor não encontrado." });
 

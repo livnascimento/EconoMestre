@@ -13,7 +13,7 @@ export const createClient = async (req, res) => {
 
         const encryptedPassword = await bcrypt.hash(password, 10);
 
-        data.Client.push(new Client(id, name, cpf, email, encryptedPassword));
+        data.clients.push(new Client(id, name, cpf, email, encryptedPassword));
 
         const jsonString = JSON.stringify(data);
 
@@ -34,19 +34,20 @@ export const updateClient = async (req, res) => {
 
         const encryptedPassword = await bcrypt.hash(password, 10);
 
-        data.clients.forEach(async client => {
+        for (let client of data.clients) {
             if (client.id == id) {
                 client.name = name;
                 client.cnpi = cnpi;
                 client.email = email;
                 client.password = encryptedPassword;
+                
+                const jsonString = JSON.stringify(data);
+    
+                await fs.writeFile("./src/database/clients.json", jsonString);
+    
+                return res.json();
             }
-            const jsonString = JSON.stringify(data);
-
-            await fs.writeFile("./src/database/clients.json", jsonString);
-
-            return res.json();
-        });
+        }
 
         return res.status(404).json({ message: "Cliente não encontrado." });
 
@@ -65,6 +66,8 @@ export const getClientById = async (req, res) => {
             if (client.id == id)
                 return res.json(client);
         })
+
+        return res.status(404).json({message: "Cliente não encontrado."})
 
     } catch (error) {
         return res.status(500).json(error.message);
