@@ -1,0 +1,45 @@
+CREATE DATABASE EconoMestre;
+
+USE EconoMestre;
+
+CREATE TABLE Customers (
+	CustomerID INT IDENTITY(1,1) PRIMARY KEY,
+	"Name" VARCHAR(100) NOT NULL,
+	Cpf VARCHAR(11) NOT NULL UNIQUE,
+	Email VARCHAR(255) NOT NULL UNIQUE,
+	"Password" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Consultants (
+	ConsultantID INT IDENTITY(1,1) PRIMARY KEY,
+	"Name" VARCHAR(100) NOT NULL,
+	Cnpi VARCHAR(20) NOT NULL UNIQUE,
+	Email VARCHAR(255) NOT NULL UNIQUE,
+	"Password" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Meetings (
+    MeetingID INT IDENTITY(1,1) PRIMARY KEY,
+    CustomerID INT,
+    ConsultantID INT,
+    DateHour DATETIME,
+    Subject VARCHAR(100),
+    CONSTRAINT FK_CustomerID FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    CONSTRAINT FK_ConsultantID FOREIGN KEY (ConsultantID) REFERENCES Consultants(ConsultantID)
+);
+
+CREATE TABLE OfficeDays (
+	DayID INT IDENTITY(1,1) PRIMARY KEY,
+	"DayName" VARCHAR(20) NOT NULL
+);
+
+
+CREATE TABLE OfficeTimes (
+	OfficeTimeID INT IDENTITY(1,1) PRIMARY KEY,
+	DayID INT,
+	ConsultantID INT,
+	OfficeTimeStart TIME,
+	OfficeTimeEnd TIME,
+	CONSTRAINT FK_DayID FOREIGN KEY (DayID) REFERENCES OfficeDays(DayID),
+	CONSTRAINT FK_OfficeTimesConsultantID FOREIGN KEY (ConsultantID) REFERENCES Consultants(ConsultantID)
+);
